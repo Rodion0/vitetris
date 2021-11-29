@@ -1,7 +1,5 @@
 VITETRIS - Virtual terminal *tris clone
 
-	<GOnna add reset hotkey>
-
   Homepage: http://victornils.net/tetris
 
   Rotation, scoring, levels and speed should resemble the early Tetris games
@@ -29,7 +27,7 @@ How to Play
   (If you're on Windows, just double-click tetris.exe.)
 
   To navigate in the menus, use the cursor keys, ENTER to proceed (or leave
-  a menu), and BACKSPACE or ESC to go back.  Exit at once with Q.
+  a menu), and BACKSPACE or ESC to go back. Exit at once with Q. 
 
   Default Game Controls
 
@@ -40,7 +38,9 @@ How to Play
 	Harddrop:   SPACE
 
   To pause in a single-player game, press P or ENTER.
-
+  
+  To do a quick reset, press R. For a full reset, press BAKCSPACE or ESC. 
+	
   A-type means a normal "marathon" game.
   In a B-type game, the object is to clear 25 lines.
 
