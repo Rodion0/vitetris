@@ -318,6 +318,12 @@ int processkey_ingame(int key, int flags)
 		i = pausegame();
 		textgfx_flags &= ~LOST_FOCUS;
 		return i;
+	case 'r':
+		if (flags & NO_PAUSE || !game_running || TWOPLAYER_MODE)
+			break;
+		do textgfx_entergame();
+		while (startgame());
+		return -2; 	
 	}
 	if (flags & DISCARD_MOVES) {
 		if (++discard_count > 5)
