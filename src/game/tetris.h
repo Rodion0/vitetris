@@ -111,6 +111,7 @@ extern char clearedlines[4];
 int randnum(int n);
 void resettetrom(struct tetr *t);
 void gettetrom(struct tetr *t, int i);
+void swaptetrom(struct player *plr);
 
 int hitbtm(struct tetr *piece, struct player *p);
 void lockpiece(struct player *p);
