@@ -7,6 +7,7 @@
 #include "../timer.h"
 #include "../draw/draw.h"  /* upd_screen */
 #include "../game/tetris.h"
+#include "../game/game.h"
 #ifndef SOCKET
 #define SOCKET_EMPTY_DEFS 1
 #undef socket_fd
