@@ -40,6 +40,10 @@ How to Play
   To pause in a single-player game, press P or ENTER.
   
   To do a quick reset, press R. For a full reset, press BAKCSPACE or ESC. 
+  
+  To Store current piece, press S. If a piece is not already stored, a new piece will be randomly generated at the top, and 
+  the piece you had will be put on hold. If a piece is already stored and on hold, then your current piece will be swapped with
+  the one on hold. If this function is used, it cannot be used again until the piece that was swapped for has been placed and locked.
 	
   A-type means a normal "marathon" game.
   In a B-type game, the object is to clear 25 lines.
