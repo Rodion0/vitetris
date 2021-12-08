@@ -1,5 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <time.h>
 #include "tetris.h"
 #include "../timer.h"
 #include "../input/input.h"
@@ -7,15 +9,58 @@
 
 struct game *game = NULL;
 char clearedlines[4];
+int possibleSolutions[7] = {-1,-1,-1,-1,-1,-1,-1};
 
 #define RETURN_ON_INPUT 4
 
 /* process single-player input */
 static int processinput(int tm, int flags);
 
+void resetSolutions(){
+	for(int i = 0; i < 7; i++){
+		possibleSolutions[i] = -1;
+	}
+}
+
 int randnum(int n)
 {
-	return (int) (n*(rand()/(RAND_MAX+1.0)));
+	//Create a new way to generate the random number
+	 time_t t = time(NULL);
+  	 struct tm tm = *localtime(&t);
+	 int hour = tm.tm_hour;
+	 int min = tm.tm_min;
+	 int sec = tm.tm_sec;
+	 int day = tm.tm_mday;
+	 int maxVal = 7;
+	 int randNum = (((hour + 1) * (min + 1) * (sec + 1) * day) % maxVal);
+	 int randNum2 = (n*(rand()/(RAND_MAX+1.0)));
+
+	//Check that there is possible solution.  If not, then reset.
+	 for(int i = 0; i < maxVal; i++){
+		 if (possibleSolutions[i] == -1){
+			break;
+		 }
+		 if (i == 6 && possibleSolutions[i] != -1){
+			 resetSolutions();
+		 }
+	 }
+	 
+	 //If neither of the random number generators has found an open space, keep generating.
+	 while (possibleSolutions[randNum2] != -1 && possibleSolutions[randNum] != -1){
+		 randNum = (((hour + 1) * (min + 1) * (sec + 1) * day) % maxVal);
+	 	 randNum2 = (n*(rand()/(RAND_MAX+1.0)));
+	 }
+	 //If the new generator found the open space, return it.
+	 if(possibleSolutions[randNum2] == -1){
+		 possibleSolutions[randNum2] = 0;
+		 return randNum2;
+	 }
+	 //If the old generator found the open space, return it.
+	 if(possibleSolutions[randNum] == -1){
+		 possibleSolutions[randNum] = 0;
+		 return randNum;
+	 }
+
 }
 
 void gettetrom(struct tetr *t, int i)
