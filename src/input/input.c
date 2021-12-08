@@ -7,6 +7,7 @@
 #include "../timer.h"
 #include "../draw/draw.h"  /* upd_screen */
 #include "../game/tetris.h"
+#include "../game/game.h"
 #ifndef SOCKET
 #define SOCKET_EMPTY_DEFS 1
 #undef socket_fd
@@ -324,6 +325,12 @@ int processkey_ingame(int key, int flags)
 		do textgfx_entergame();
 		while (startgame());
 		return -2; 	
+	case 's':
+		if (flags & NO_PAUSE || !game_running || TWOPLAYER_MODE)
+                        break;
+                
+                swaptetrom(&player1);
+                return 2;
 	}
 	if (flags & DISCARD_MOVES) {
 		if (++discard_count > 5)
